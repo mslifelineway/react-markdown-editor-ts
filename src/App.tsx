@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import MarkdownEditor from "@uiw/react-markdown-editor";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MdEditor from "./containers/MdEditor";
+import { paths } from "./utils/constants";
+import MdEditorPreview from "./containers/MdEditorPreview";
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path={paths.root} element={<MdEditor />} />
+        <Route path={paths.mdEditor} element={<MdEditor />} />
+        <Route path={paths.mdEditorPreview} element={<MdEditorPreview />} />
+        <Route path={paths.markdownEditor} element={<MarkdownEditor />} />
+      </Routes>
+    </Router>
   );
-}
-
-export default App;
+};
