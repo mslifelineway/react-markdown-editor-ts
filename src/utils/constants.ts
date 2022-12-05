@@ -4,8 +4,6 @@ export const paths = {
   root: "/",
   mdEditor: "/mdeditor",
   mdEditorPreview: "/mdeditor/view",
-  markdownEditor: "/markdowndeditor",
-  markdownEditorPreview: "/markdowndeditor/view",
 };
 
 export const toastProps: ToastContainerProps = {
