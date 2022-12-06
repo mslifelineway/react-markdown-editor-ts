@@ -6,3 +6,9 @@
 .w-md-editor {
   min-height: 80vh;
 }
+
+.w-md-editor-content code.chart {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
