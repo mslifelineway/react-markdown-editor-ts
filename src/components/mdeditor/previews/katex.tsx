@@ -1,6 +1,8 @@
 import { getCodeString } from "rehype-rewrite";
 import katex from "katex";
 import { CodeProps } from "react-markdown/lib/ast-to-react";
+import { allowedLanguages } from "../constants";
+import { checkAllowedLanguage } from "../helpers";
 
 //Katext - for flowchart or diagram etc
 export const katexCode = ({
@@ -26,7 +28,7 @@ export const katexCode = ({
   if (
     typeof code === "string" &&
     typeof className === "string" &&
-    /^language-katex/.test(className.toLocaleLowerCase())
+    checkAllowedLanguage(allowedLanguages.katex, className.toLocaleLowerCase())
   ) {
     const html = katex.renderToString(code, {
       throwOnError: false,
@@ -38,5 +40,5 @@ export const katexCode = ({
       />
     );
   }
-  return null;
+  return <code className={String(className)}>{txt}</code>;
 };

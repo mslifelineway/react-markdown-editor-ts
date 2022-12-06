@@ -7,6 +7,7 @@ import ReactMDEditor, {
 import { paths } from "../utils/constants";
 import { clear, getData, setData } from "../utils/localstorage";
 
+/**------------ */
 // eslint-disable-next-line no-useless-escape
 const mdKaTeX = `This is to display the \`\$\$\c = \\pm\\sqrt{a^2 + b^2}\$\$\` in one line
 \`\`\`KaTeX
@@ -26,6 +27,7 @@ B --> C{Decision}
 C -->|One| D[Result 1]
 C -->|Two| E[Result 2]
 \`\`\`
+
 \`\`\`mermaid
 sequenceDiagram
 Alice->>John: Hello John, how are you?
@@ -39,11 +41,21 @@ Bob-->>John: Jolly good!
 \`\`\`
 `;
 
+const jsxCode = `
+\`\`\`jsx
+import React, { useState, useRef, useEffect } from "react";
+import ReactDOM from "react-dom";
+import MDEditor from "@uiw/react-md-editor";
+import mermaid from "mermaid";
+\`\`\`
+`;
+
 let defaultValue = getData() || "";
 defaultValue = mdKaTeX;
-defaultValue = mdMermaid;
-defaultValue += mdKaTeX;
+defaultValue += mdMermaid;
+defaultValue += jsxCode;
 
+/**------------ */
 const Editor = () => {
   const [value, setValue] = React.useState<string>(defaultValue);
 

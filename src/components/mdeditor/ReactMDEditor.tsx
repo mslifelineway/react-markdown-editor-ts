@@ -2,8 +2,9 @@ import MDEditor, { MDEditorProps } from "@uiw/react-md-editor";
 import { customToolbar } from "./customizedToolbar";
 import { previewOptions } from "./previews";
 import { customCommands, extraCommands } from "./commands";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 
-import "../../styles/mdeditor.styles.css";
+import "./mdeditor.styles.css";
 import "katex/dist/katex.css";
 
 const defaultPlaceholder = "Please enter the markdown text!";
@@ -38,15 +39,39 @@ const ReactMDEditor = ({
     editorProps.onChange = handleChange;
   }
 
-  console.log("===> value: ", value);
-
   return (
     <div data-color-mode="light">
       <div className="container">
         <MDEditor
           {...editorProps}
           previewOptions={{
-            // rehypePlugins: [[rehypeSanitize]], //this is creating problems with kaTex when it's passing
+            rehypePlugins: [
+              [
+                rehypeSanitize,
+                {
+                  ...defaultSchema,
+
+                  attributes: {
+                    ...defaultSchema.attributes,
+                    code: [
+                      ...(defaultSchema?.attributes?.code || []),
+                      // List of all allowed languages:
+                      [
+                        "className",
+                        "language-KaTeX",
+                        "language-mermaid",
+                        "language-js",
+                        "language-jsx",
+                        "language-ts",
+                        "language-tsx",
+                        "language-css",
+                        "language-md",
+                      ],
+                    ],
+                  },
+                },
+              ],
+            ],
             ...previewOptions,
           }}
           textareaProps={{

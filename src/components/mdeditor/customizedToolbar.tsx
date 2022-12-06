@@ -1,5 +1,5 @@
 import { ICommand } from "@uiw/react-md-editor/lib/commands";
-import { ExecuteCommandType } from "../../types/mdeditor.types";
+import { ExecuteCommandType } from "./mdeditor.types";
 import { BsCodeSlash } from "react-icons/bs";
 import { BiCodeBlock } from "react-icons/bi";
 import { RiHeading } from "react-icons/ri";

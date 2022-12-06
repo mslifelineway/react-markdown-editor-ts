@@ -3,7 +3,9 @@ import { getCodeString } from "rehype-rewrite";
 import { CodeProps } from "react-markdown/lib/ast-to-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { IoCopyOutline } from "react-icons/io5";
-import { BiCheckDouble } from "react-icons/bi";
+import { BiCheck } from "react-icons/bi";
+import { checkAllowedLanguage } from "../helpers";
+import { allowedLanguages } from "../constants";
 
 /**
  * highlight js, jsx ts or tsx code
@@ -15,7 +17,7 @@ export const HighlightCode = ({
   children = [],
   className,
   ...props
-}: CodeProps): JSX.Element | null => {
+}: CodeProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   const txt = children[0] || "";
@@ -38,10 +40,19 @@ export const HighlightCode = ({
   if (
     typeof code === "string" &&
     typeof className === "string" &&
-    /^language-jsx/.test(className.toLocaleLowerCase())
+    (checkAllowedLanguage(allowedLanguages.js, className.toLocaleLowerCase()) ||
+      checkAllowedLanguage(
+        allowedLanguages.jsx,
+        className.toLocaleLowerCase()
+      ) ||
+      checkAllowedLanguage(
+        allowedLanguages.ts,
+        className.toLocaleLowerCase()
+      ) ||
+      checkAllowedLanguage(allowedLanguages.tsx, className.toLocaleLowerCase()))
   ) {
     return (
-      <>
+      <div style={{ position: "relative" }}>
         <div
           style={{
             position: "absolute",
@@ -52,15 +63,13 @@ export const HighlightCode = ({
           onClick={handleCopy}
         >
           {isCopied ? (
-            <BiCheckDouble style={{ color: "green" }} />
+            <BiCheck style={{ color: "green" }} />
           ) : (
             <IoCopyOutline style={{ color: `rgb(0, 119, 170)` }} />
           )}
         </div>
         <SyntaxHighlighter language="javascript">{code}</SyntaxHighlighter>
-      </>
+      </div>
     );
   }
-  console.log("===> null resp..........");
-  return null;
 };

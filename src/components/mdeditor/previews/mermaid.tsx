@@ -1,6 +1,8 @@
 import { ReactNode, useEffect, useRef } from "react";
 import mermaid from "mermaid";
 import { CodeProps } from "react-markdown/lib/ast-to-react";
+import { checkAllowedLanguage } from "../helpers";
+import { allowedLanguages } from "../constants";
 
 export const randomid = () =>
   parseInt(String(Math.random() * 1e15), 10).toString(36);
@@ -44,7 +46,6 @@ export const MermaidCode = ({
         // @ts-ignore
         demo.current.innerHTML = str;
       } catch (error) {
-        console.log("====> error occurred: ");
         // @ts-ignore
         // demo.current.innerHTML = error;
         demo.current.innerHTML = code; //we don't want to show the error, just show the code as it is
@@ -55,7 +56,7 @@ export const MermaidCode = ({
   if (
     typeof code === "string" &&
     typeof className === "string" &&
-    /^language-mermaid/.test(className.toLocaleLowerCase())
+    checkAllowedLanguage(allowedLanguages.katex, className.toLocaleLowerCase())
   ) {
     return (
       <code ref={demo}>
