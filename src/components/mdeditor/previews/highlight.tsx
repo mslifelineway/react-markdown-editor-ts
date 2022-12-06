@@ -52,21 +52,24 @@ export const HighlightCode = ({
       checkAllowedLanguage(allowedLanguages.tsx, className.toLocaleLowerCase()))
   ) {
     return (
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative" }} className="highlight">
         <div
           style={{
             position: "absolute",
             top: 10,
             right: 10,
             cursor: "pointer",
+            zIndex: 1,
+            border: `1px solid ${isCopied ? "green" : `rgb(0, 119, 170)`}`,
+            color: isCopied ? "green" : `rgb(0, 119, 170)`,
+            padding: "3px",
+            borderRadius: "4px",
+            fontSize: "14px",
+            display: "flex",
           }}
           onClick={handleCopy}
         >
-          {isCopied ? (
-            <BiCheck style={{ color: "green" }} />
-          ) : (
-            <IoCopyOutline style={{ color: `rgb(0, 119, 170)` }} />
-          )}
+          {isCopied ? <BiCheck /> : <IoCopyOutline />}
         </div>
         <SyntaxHighlighter language="javascript">{code}</SyntaxHighlighter>
       </div>

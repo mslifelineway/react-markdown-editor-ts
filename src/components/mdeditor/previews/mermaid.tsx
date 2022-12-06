@@ -66,7 +66,7 @@ export const MermaidCode = ({
   }
 
   return (
-    <code ref={demo}>
+    <code ref={demo} className="chart">
       <code className={String(className)}>{children}</code>
     </code>
   );

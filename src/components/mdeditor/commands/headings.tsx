@@ -1,7 +1,7 @@
-import { commands } from "@uiw/react-md-editor";
+import { commands, ICommand } from "@uiw/react-md-editor";
 import { FaHeading } from "react-icons/fa";
 
-export const headings = commands.group(
+export const headings: ICommand = commands.group(
   [
     commands.title1,
     commands.title2,

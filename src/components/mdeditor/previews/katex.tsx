@@ -33,12 +33,7 @@ export const katexCode = ({
     const html = katex.renderToString(code, {
       throwOnError: false,
     });
-    return (
-      <code
-        style={{ fontSize: "150%" }}
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    );
+    return <code className="math" dangerouslySetInnerHTML={{ __html: html }} />;
   }
   return <code className={String(className)}>{txt}</code>;
 };
