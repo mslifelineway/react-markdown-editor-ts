@@ -8,3 +8,6 @@ export const checkAllowedLanguage = (
   );
   return regex.test(codePropsLanguage.toLocaleLowerCase());
 };
+
+export const randomid = () =>
+  parseInt(String(Math.random() * 1e15), 10).toString(36);

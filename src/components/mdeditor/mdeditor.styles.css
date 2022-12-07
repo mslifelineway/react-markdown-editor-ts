@@ -1,8 +1,3 @@
-.w-md-editor-text-pre > code,
-.w-md-editor-text-input {
-  /* font-size: 23px !important;
-  line-height: 24px !important; */
-}
 .w-md-editor {
   min-height: 80vh;
 }
@@ -11,4 +6,35 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.w-md-editor-content h1,
+.w-md-editor-content h2,
+.w-md-editor-content h3,
+.w-md-editor-content h4,
+.w-md-editor-content h5,
+.w-md-editor-content h6 {
+  padding: 0;
+  padding-bottom: 8px;
+  margin: 0;
+  border: none;
+}
+
+.w-md-editor-content hr {
+  height: auto;
+  margin: 12px 0;
+}
+
+/* list */
+
+.w-md-editor-content ul li svg {
+  margin-top: 5px;
+  margin-right: 8px;
+  opacity: 0.5;
+}
+
+/* checked list */
+.w-md-editor-content ul:has(li):has(li.checked-list) li .list-item{
+  display: flex;
+  align-items: center;
 }

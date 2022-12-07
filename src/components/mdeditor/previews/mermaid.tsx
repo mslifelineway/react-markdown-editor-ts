@@ -1,11 +1,8 @@
 import { ReactNode, useEffect, useRef } from "react";
 import mermaid from "mermaid";
 import { CodeProps } from "react-markdown/lib/ast-to-react";
-import { checkAllowedLanguage } from "../helpers";
+import { checkAllowedLanguage, randomid } from "../helpers";
 import { allowedLanguages } from "../constants";
-
-export const randomid = () =>
-  parseInt(String(Math.random() * 1e15), 10).toString(36);
 
 export const getCode = (arr: ReactNode[] = []): string => {
   return arr
