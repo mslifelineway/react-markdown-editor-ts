@@ -27,6 +27,13 @@
 
 /* list */
 
+.w-md-editor-content ul {
+  list-style-type: disc;
+}
+.w-md-editor-content ol {
+  list-style-type: auto;
+}
+
 .w-md-editor-content ul li svg {
   margin-top: 5px;
   margin-right: 8px;
@@ -34,7 +41,11 @@
 }
 
 /* checked list */
-.w-md-editor-content ul:has(li):has(li.checked-list) li .list-item{
+.w-md-editor-content ul:has(li):has(li.checked-list) {
+  list-style: none;
+  padding-left: 1rem;
+}
+.w-md-editor-content ul:has(li):has(li.checked-list) li .list-item {
   display: flex;
   align-items: center;
 }
